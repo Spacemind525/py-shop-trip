@@ -1,5 +1,5 @@
 class Shop:
-    def __init__(self, data: dict):
+    def __init__(self, data: dict) -> None:
         self.name = data["name"]
         self.location = tuple(data["location"])
         self.products = data["products"]

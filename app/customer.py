@@ -2,7 +2,7 @@ import math
 
 
 class Customer:
-    def __init__(self, data: dict):
+    def __init__(self, data: dict) -> None:
         self.name = data["name"]
         self.product_cart = data["product_cart"]
         self.location = tuple(data["location"])
