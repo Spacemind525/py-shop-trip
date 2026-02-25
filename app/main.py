@@ -41,17 +41,18 @@ def shop_trip():
             product_total = best_shop.total_products_cost(customer.product_cart)
 
             for item, quantity in customer.product_cart.items():
-                price_per_unit = best_shop.products[item]
-                item_total = quantity * price_per_unit
+                if item in best_shop.products:
+                    price_per_unit = best_shop.products[item]
+                    item_total = quantity * price_per_unit
 
-                print(f"{quantity} {item}s for {item_total:g} dollars")
+                    print(f"{quantity} {item}s for {item_total:.2f} dollars")
 
-            print(f"Total cost is {product_total} dollars")
+            print(f"Total cost is {product_total:.2f} dollars")
             print("See you again!\n")
 
             print(f"{customer.name} rides home")
             customer.location = home_location
             customer.money -= best_cost
-            print(f"{customer.name} now has {customer.money:g} dollars")
+            print(f"{customer.name} now has {customer.money:.2f} dollars")
         else:
             print(f"{customer.name} doesn't have enough money to make a purchase in any shop")
