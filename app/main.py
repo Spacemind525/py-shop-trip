@@ -26,7 +26,8 @@ def shop_trip() -> None:
         for shop in shops:
             total_trip_cost = customer.calc_trip_cost(shop, fuel_price)
             trip_costs.append((total_trip_cost, shop))
-            print(f"{customer.name}'s trip to the {shop.name} costs {total_trip_cost:.2f}")
+            print(f"{customer.name}'s trip to the {shop.name}"
+                  f" costs {total_trip_cost:.2f}")
 
         best_cost, best_shop = min(trip_costs, key=lambda x: x[0])
 
@@ -34,11 +35,14 @@ def shop_trip() -> None:
             print(f"{customer.name} rides to {best_shop.name}\n")
             customer.location = best_shop.location
 
-            print(f"Date: {datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')}")
+            print(f"Date: "
+                  f"{datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')}")
             print(f"Thanks, {customer.name}, for your purchase!")
             print("You have bought:")
 
-            product_total = best_shop.total_products_cost(customer.product_cart)
+            product_total = best_shop.total_products_cost(
+                customer.product_cart
+            )
 
             for item, quantity in customer.product_cart.items():
                 if item in best_shop.products:
@@ -55,4 +59,5 @@ def shop_trip() -> None:
             customer.money -= best_cost
             print(f"{customer.name} now has {customer.money:.2f} dollars")
         else:
-            print(f"{customer.name} doesn't have enough money to make a purchase in any shop")
+            print(f"{customer.name} doesn't have enough"
+                  f" money to make a purchase in any shop")
