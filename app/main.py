@@ -24,12 +24,7 @@ def shop_trip():
 
         trip_costs = []
         for shop in shops:
-            dist = customer.distance_km(shop)
-            fuel_cost_total = customer.car.calc_fuel_cost(dist, fuel_price) * 2
-
-            products_cost = shop.total_products_cost(customer.product_cart)
-
-            total_trip_cost = fuel_cost_total + products_cost
+            total_trip_cost = customer.calc_trip_cost(shop, fuel_price)
             trip_costs.append((total_trip_cost, shop))
 
             print(f"{customer.name}'s trip to the {shop.name}"
@@ -45,6 +40,17 @@ def shop_trip():
                 '%d/%m/%Y %H:%M:%S')}")
             print(f"Thanks, {customer.name}, for your purchase!")
             print("You have bought:")
+            product_total = 0
+            for item, quantity in customer.shopping_cart.items():
+                price_per_unit = best_shop.products[item]
+                item_total = quantity * price_per_unit
+                product_total += item_total
+
+                unit_word = "dollars" if item_total != 1 else "dollar"
+                print(f"{quantity} {item}s for {item_total} {unit_word}")
+
+            print(f"Total cost is {product_total:.2f} dollars")
+            print("See you again!")
 
             print(f"Total cost is {best_cost:.2f} dollars")
 
