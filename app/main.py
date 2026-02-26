@@ -51,12 +51,13 @@ def shop_trip() -> None:
 
                     print(f"{quantity} {item}s for {item_total:g} dollars")
 
-            print(f"Total cost is {product_total:.2f} dollars")
+            print(f"Total cost is {product_total:g} dollars")
             print("See you again!\n")
 
             print(f"{customer.name} rides home")
             customer.location = home_location
             customer.money -= best_cost
+            customer.money =round(customer.money, 2)
             print(f"{customer.name} now has {customer.money:g} dollars")
         else:
             print(f"{customer.name} doesn't have enough"
